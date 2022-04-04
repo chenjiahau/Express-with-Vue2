@@ -1,16 +1,20 @@
 <template>
   <div id="app" class="container">
-    <Sendessage></Sendessage>
+    <h1>Version {{version}}</h1>
+    <phone-product></phone-product>
+    <notebook-product></notebook-product>
   </div>
 </template>
 
 <script>
-import Sendessage from './components/SendMessage.vue'
+import PhoneProduct from './components/PhoneProduct.vue';
+import NotebookProduct from './components/NotebookProduct.vue';
 
 export default {
   name: 'App',
   components: {
-    Sendessage
+    PhoneProduct,
+    NotebookProduct
   }
 }
 </script>
