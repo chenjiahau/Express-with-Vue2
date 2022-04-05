@@ -1,27 +1,44 @@
 <template>
   <div v-if="member">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <router-link
-            tag="a"
-            to="/"
-            exact
+    <nav aria-label="breadcrumb" class="d-flex justify-content-between">
+      <div>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <router-link
+              tag="a"
+              to="/"
+              exact
+            >
+              Market
+            </router-link>
+          </li>
+          <li class="breadcrumb-item">
+            <router-link
+              tag="a"
+              :to="{ name: 'memberList' }"
+              exact
+            >
+              Member List
+            </router-link>
+          </li>
+        <li class="breadcrumb-item active" aria-current="page">{{member['first_name']}} {{member['last_name']}}</li>
+        </ol>
+      </div>
+      <div>
+        <b-dropdown
+          id="memberList"
+          class="m-md-2"
+          :text="member['first_name'] + ' ' + member['last_name']"
+        >
+          <b-dropdown-item
+            v-for='(memberItem, index) in memberList'
+            :key="index"
+            @click="changeMember(memberItem.id)"
           >
-            Market
-          </router-link>
-        </li>
-        <li class="breadcrumb-item">
-          <router-link
-            tag="a"
-            :to="{ name: 'memberList' }"
-            exact
-          >
-            Member List
-          </router-link>
-        </li>
-       <li class="breadcrumb-item active" aria-current="page">{{member['first_name']}} {{member['last_name']}}</li>
-      </ol>
+            {{memberItem['first_name']}} {{memberItem['last_name']}}
+          </b-dropdown-item>
+        </b-dropdown>
+      </div>
     </nav>
     <div class="card" >
       <div class="card-body">
@@ -51,7 +68,7 @@ export default {
   name: 'MemberDetail',
   mixins: [MemberList],
   props: {
-    id: Number
+    id: String
   },
   data: function() {
     return {
@@ -60,6 +77,24 @@ export default {
   },
   created() {
     this.member = this.getMemberById(this.id);
+  },
+  watch: {
+    id(newValue) {
+      this.member = this.getMemberById(newValue);
+    }
+  },
+  methods: {
+    changeMember: function(memberId) {
+      if (memberId === this.member.id)
+        return;
+
+      this.$router.push({
+        name: 'memberDetail',
+        params: {
+          id: memberId.toString()
+        }
+      })
+    }
   }
 }
 </script>

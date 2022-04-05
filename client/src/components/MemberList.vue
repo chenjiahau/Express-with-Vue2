@@ -32,7 +32,7 @@
             <router-link
               tag="button"
               class="btn btn-primary"
-              :to="{name: 'memberDetail', params: { id: member.id }}"
+              :to="{name: 'memberDetail', params: { id: member.id.toString() }}"
             >
               Detail
             </router-link>
