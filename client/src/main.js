@@ -9,6 +9,7 @@ import App from './App.vue';
 import MarketHome from './components/MarketHome';
 import MemberList from './components/MemberList';
 import MemberDetail from './components/MemberDetail';
+import PageNotFound from './components/PageNotFound';
 
 Vue.use(BootstrapVue);
 
@@ -19,7 +20,7 @@ const router = new VueRouter({
     { path: '/', component: MarketHome },
     { path: '/member-list', component: MemberList },
     { path: '/member-list/member/:id', component: MemberDetail },
-    { path: '*', component: MarketHome }
+    { path: '*', component: PageNotFound }
   ]
 })
 
