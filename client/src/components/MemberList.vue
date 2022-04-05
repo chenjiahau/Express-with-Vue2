@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="member-list">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">

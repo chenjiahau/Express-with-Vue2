@@ -9,6 +9,7 @@ import App from './App.vue';
 import MarketHome from './components/MarketHome';
 import MemberList from './components/MemberList';
 import MemberDetail from './components/MemberDetail';
+import LeftMessage from './components/LeftMessage';
 import PageNotFound from './components/PageNotFound';
 
 Vue.use(BootstrapVue);
@@ -23,7 +24,10 @@ const router = new VueRouter({
       path: '/member-list/member/:id',
       props: true,
       name: 'memberDetail',
-      component: MemberDetail
+      component: MemberDetail,
+      children: [
+        { path: 'left-message', name: 'leftMessage', component: LeftMessage }
+      ]
     },
     { path: '*', component: PageNotFound }
   ]
