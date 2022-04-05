@@ -14,7 +14,7 @@
         <li class="breadcrumb-item">
           <router-link
             tag="a"
-            to="/member-list"
+            :to="{ name: 'memberList' }"
             exact
           >
             Member List

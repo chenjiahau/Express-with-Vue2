@@ -18,11 +18,11 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     { path: '/', component: MarketHome },
-    { path: '/member-list', component: MemberList },
-    { path: '/member-list/member/:id', component: MemberDetail },
+    { path: '/member-list', name: 'memberList', component: MemberList },
+    { path: '/member-list/member/:id', name: 'memberDetail', component: MemberDetail },
     { path: '*', component: PageNotFound }
   ]
-})
+});
 
 new Vue({
   render: h => h(App),

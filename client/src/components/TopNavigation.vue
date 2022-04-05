@@ -17,7 +17,7 @@
             tag="a"
             class="nav-link"
             active-class="active"
-            to="/member-list"
+            :to="{name: 'memberList'}"
           >
             Member List
           </router-link>

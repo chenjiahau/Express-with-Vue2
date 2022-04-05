@@ -29,12 +29,13 @@
           <td>{{member.first_name}}</td>
           <td>{{member.last_name}}</td>
           <td>
-            <button
+            <router-link
+              tag="button"
               class="btn btn-primary"
-              @click="hideTable(member.id)"
+              :to="{name: 'memberDetail', params: { id: member.id}}"
             >
               Detail
-            </button>
+            </router-link>
           </td>
         </tr>
       </tbody>
@@ -48,12 +49,7 @@ import MemberList from '../mixins/MemberList';
 
 export default {
   name: 'MemberList',
-  mixins: [MemberList],
-  methods: {
-    hideTable: function(memberId) {
-      this.$router.push('/member-list/member/' + memberId);
-    }
-  }
+  mixins: [MemberList]
 }
 </script>
 
