@@ -1,22 +1,23 @@
 <template>
-  <div id="app" class="container">
-    <Sendessage></Sendessage>
+  <div id="app">
+    <top-navigation></top-navigation>
+    <router-view class="app-body"></router-view>
   </div>
 </template>
 
 <script>
-import Sendessage from './components/SendMessage.vue'
+import TopNavigation from './components/TopNavigation.vue';
 
 export default {
   name: 'App',
   components: {
-    Sendessage
+    TopNavigation
   }
 }
 </script>
 
 <style>
-#app {
-  margin-top: 20px;
-}
+  .app-body {
+    padding: 12px 16px 0 16px;
+  }
 </style>

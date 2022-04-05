@@ -1,12 +1,13 @@
 <template>
-  <h1>Vue</h1>
+  <div>Content US</div>
 </template>
 
 <script>
 export default {
-  name: 'SendMessage'
+  name: 'ContentUs'
 }
 </script>
 
 <style scoped>
+
 </style>
