@@ -26,6 +26,8 @@
     <div class="d-flex justify-content-between">
       <div>
         <b-button variant="primary" @click="leftMessage()">Left Message</b-button>
+        {{' | '}}
+        <b-button variant="success" @click="viewMessage()">View Message</b-button>
       </div>
       <div>
         <b-dropdown
@@ -102,6 +104,12 @@ export default {
     leftMessage: function() {
       this.$router.push({
         name: 'leftMessage'
+      })
+      .catch(()=>{});
+    },
+    viewMessage: function() {
+      this.$router.push({
+        name: 'viewMessage'
       })
       .catch(()=>{});
     }

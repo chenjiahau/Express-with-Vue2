@@ -1,13 +1,12 @@
 import memberList from '../data/memberList';
 
+memberList.map(member => member['messages'] = []);
+
 export default {
   data: function () {
     return {
       memberList
     }
-  },
-  created() {
-    this.memberList.map(member => member['messages'] = []);
   },
   methods: {
     getMemberById: function (id) {
