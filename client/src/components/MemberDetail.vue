@@ -50,13 +50,16 @@ import MemberList from '../mixins/MemberList';
 export default {
   name: 'MemberDetail',
   mixins: [MemberList],
+  props: {
+    id: Number
+  },
   data: function() {
     return {
       member: null
     }
   },
   created() {
-    this.member = this.getMemberById(this.$route.params.id);
+    this.member = this.getMemberById(this.id);
   }
 }
 </script>

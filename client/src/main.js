@@ -19,7 +19,12 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: MarketHome },
     { path: '/member-list', name: 'memberList', component: MemberList },
-    { path: '/member-list/member/:id', name: 'memberDetail', component: MemberDetail },
+    {
+      path: '/member-list/member/:id',
+      props: true,
+      name: 'memberDetail',
+      component: MemberDetail
+    },
     { path: '*', component: PageNotFound }
   ]
 });
