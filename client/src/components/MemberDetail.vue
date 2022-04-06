@@ -1,5 +1,5 @@
 <template>
-  <div class="member-detail" v-if="member">
+  <div class="member-detail" v-if="member" href="#top">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -64,6 +64,9 @@
       </div>
     </div>
     <router-view></router-view>
+    <div class="goto-top">
+      <b-button @click="gotoTop()">Button</b-button>
+    </div>
   </div>
 </template>
 
@@ -85,6 +88,11 @@ export default {
     this.member = this.getMemberById(this.id);
   },
   watch: {
+    $route(to) {
+      if (to.hash && to.hash.indexOf("#top") > -1) {
+        window.scrollTo(0,0);
+      }
+    },
     id(newValue) {
       this.member = this.getMemberById(newValue);
     }
@@ -112,6 +120,13 @@ export default {
         name: 'viewMessage'
       })
       .catch(()=>{});
+    },
+    gotoTop: function() {
+      this.$router.push({
+        name: this.$route.name,
+        hash: '#top' + new Date().getTime()
+      })
+      .catch(()=>{});
     }
   }
 }
@@ -120,5 +135,11 @@ export default {
 <style scoped>
   .card {
     margin-bottom: 12px;
+  }
+
+  .goto-top {
+    display: flex;
+    margin: 22px 0;
+    justify-content: end;
   }
 </style>
