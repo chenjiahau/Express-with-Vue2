@@ -87,15 +87,16 @@ export default {
   created() {
     this.member = this.getMemberById(this.id);
   },
-  watch: {
-    $route(to) {
-      if (to.hash && to.hash.indexOf("#top") > -1) {
-        window.scrollTo(0,0);
-      }
-    },
-    id(newValue) {
-      this.member = this.getMemberById(newValue);
+  beforeRouteUpdate(to, from, next) {
+    if (to.hash && to.hash.indexOf("#top") > -1) {
+      window.scrollTo(0,0);
     }
+
+    if (to.params && to.params.id) {
+      this.member = this.getMemberById(to.params.id);
+    }
+
+    next();
   },
   methods: {
     changeMember: function(memberId) {
