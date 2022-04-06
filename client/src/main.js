@@ -7,6 +7,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import App from './App.vue';
 import MarketHome from './components/MarketHome';
+import MarketHomeFooter from './components/MarketHomeFooter';
 import MemberList from './components/MemberList';
 import MemberDetail from './components/MemberDetail';
 import LeftMessage from './components/LeftMessage';
@@ -19,7 +20,13 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { path: '/', component: MarketHome },
+    {
+      path: '/',
+      components: {
+        default: MarketHome,
+        MarketHomeFooter
+      }
+    },
     { path: '/member-list', name: 'memberList', component: MemberList },
     {
       path: '/member-list/member/:id',

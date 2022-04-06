@@ -2,6 +2,7 @@
   <div id="app">
     <top-navigation></top-navigation>
     <router-view class="app-body"></router-view>
+    <router-view name="MarketHomeFooter"></router-view>
   </div>
 </template>
 
