@@ -1,5 +1,8 @@
 <template>
   <div id="app" class="container">
+    <div class="block" v-if="errorMessage">
+       <b-alert variant="danger" show>{{errorMessage}}</b-alert>
+    </div>
     <div class="block">
       <button
         class="btn"
@@ -54,12 +57,11 @@
 </template>
 
 <script>
-import carList from './data/car';
-
 export default {
   name: 'App',
   data: function() {
     return {
+      errorMessage: null,
       openAdd: false,
       newOne: {
         car: null,
@@ -70,7 +72,27 @@ export default {
     }
   },
   created() {
-    this.carList = carList;
+    this.$http.get(
+      '/api/car/list',
+      {
+        header: {
+          'Content-Type': 'application/json; charset=utf-8'
+        }
+      })
+      .then(
+        (response) => {
+          return response.json();
+        },
+        (err) => {
+          this.errorMessage = err.body.message;
+        }
+      )
+      .then((data) => {
+        if (!this.errorMessage)
+          this.carList = data.data;
+      })
+      // .catch(() => {
+      // })
   },
   methods: {
     addCar: function() {
