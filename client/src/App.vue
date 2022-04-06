@@ -75,7 +75,7 @@ export default {
     this.$http.get(
       '/api/car/list',
       {
-        header: {
+        headers: {
           'Content-Type': 'application/json; charset=utf-8'
         }
       })
