@@ -75,7 +75,7 @@ export default {
     this.$http.get(
       '/api/car/list',
       {
-        header: {
+        headers: {
           'Content-Type': 'application/json; charset=utf-8'
         }
       })
@@ -102,14 +102,33 @@ export default {
       if (!this.newOne.car)
         return;
 
-      this.carList.push({
-        id: this.carList.length + 1,
-        car: this.newOne.car,
-        color: this.newOne.color,
-        popular: this.newOne.popular
-      });
-
-      this.openAdd = false;
+      this.$http.post(
+        '/api/car/add',
+        {
+          data: {
+            car: this.newOne.car,
+            color: this.newOne.color,
+            popular: this.newOne.popular
+          }
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          }
+        })
+        .then(
+          (response) => {
+            return response.json();
+          },
+          (err) => {
+            this.errorMessage = err.body.message;
+          }
+        )
+        .then((data) => {
+          if (!this.errorMessage)
+            this.carList = data.data;
+        })
+        .finally(() => this.openAdd = false);
     }
   },
   computed: {
