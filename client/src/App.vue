@@ -135,8 +135,14 @@ export default {
         .finally(() => this.openAdd = false);
     },
     deleteCar: function(carId) {
+
       this.$http.delete(
-        '/api/car/' + carId,
+        '/api/car/{carId}',
+        {
+          params: {
+            carId
+          }
+        },
         {
           headers: {
             'Content-Type': 'application/json; charset=utf-8'
