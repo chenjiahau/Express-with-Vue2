@@ -41,6 +41,7 @@
             <th scope="col">Color</th>
             <th scope="col">Car</th>
             <th scope="col">Popular</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -49,6 +50,9 @@
             <td>{{field('color', car)}}</td>
             <td>{{field('car', car)}}</td>
             <td>{{field('popular', car)}}</td>
+            <td>
+              <button class="btn btn-danger" @click="deleteCar(car.id)">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -102,14 +106,54 @@ export default {
       if (!this.newOne.car)
         return;
 
-      this.carList.push({
-        id: this.carList.length + 1,
-        car: this.newOne.car,
-        color: this.newOne.color,
-        popular: this.newOne.popular
-      });
-
-      this.openAdd = false;
+      this.$http.post(
+        '/api/car/add',
+        {
+          data: {
+            car: this.newOne.car,
+            color: this.newOne.color,
+            popular: this.newOne.popular
+          }
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          }
+        })
+        .then(
+          (response) => {
+            return response.json();
+          },
+          (err) => {
+            this.errorMessage = err.body.message;
+          }
+        )
+        .then((data) => {
+          if (!this.errorMessage)
+            this.carList = data.data;
+        })
+        .finally(() => this.openAdd = false);
+    },
+    deleteCar: function(carId) {
+      this.$http.delete(
+        '/api/car/' + carId,
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          }
+        })
+        .then(
+          (response) => {
+            return response.json();
+          },
+          (err) => {
+            this.errorMessage = err.body.message;
+          }
+        )
+        .then((data) => {
+          if (!this.errorMessage)
+            this.carList = data.data;
+        });
     }
   },
   computed: {
