@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const carList = [
+let carList = [
   {
     "id": 1,
     "color": "Maroon",
@@ -75,6 +75,7 @@ router.get('/express-test', function(req, res, next) {
 
 router.get('/api/car/list', function (req, res, next) {
   // res.status(404).send({ message: 'Something Wrong!'});
+  // return
   res.send({
     data: carList
   });
@@ -93,6 +94,18 @@ router.post('/api/car/add', function (req, res, next) {
   });
 
   // res.status(404).send({ message: 'Something Wrong!'});
+  // return
+  res.send({
+    data: carList
+  });
+});
+
+router.delete('/api/car/:id', function (req, res, next) {
+  const carId = req.params.id;
+  carList = carList.filter(car => car.id !== parseInt(carId));
+
+  // res.status(404).send({ message: 'Something Wrong!'});
+  // return;
   res.send({
     data: carList
   });
