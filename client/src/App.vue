@@ -76,13 +76,7 @@ export default {
     }
   },
   created() {
-    this.$http.get(
-      '/api/car/list',
-      {
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        }
-      })
+    this.$http.get('/api/car/list')
       .then(
         (response) => {
           return response.json();
@@ -114,11 +108,6 @@ export default {
             color: this.newOne.color,
             popular: this.newOne.popular
           }
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json; charset=utf-8'
-          }
         })
         .then(
           (response) => {
@@ -141,11 +130,6 @@ export default {
         {
           params: {
             carId
-          }
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json; charset=utf-8'
           }
         })
         .then(
