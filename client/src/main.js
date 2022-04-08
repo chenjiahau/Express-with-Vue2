@@ -7,7 +7,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue);
 
 import App from './App.vue'
+import store from './store/store';
 
 new Vue({
   render: h => h(App),
+  store
 }).$mount('#app')
