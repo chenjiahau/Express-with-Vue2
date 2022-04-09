@@ -42,7 +42,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['changeAlive'])
+    ...mapActions('member', ['changeAlive'])
+    // ...mapActions({
+    //   'changeAlive': 'member/changeAlive'
+    // })
   },
   computed: {
     title() {
@@ -56,7 +59,11 @@ export default {
           return 'Died';
       }
     },
-    ...mapGetters(['memberList', 'memberCount'])
+    ...mapGetters('member', [ 'memberList', 'memberCount' ])
+    // ...mapGetters({
+    //   'memberList': 'member/memberList',
+    //   'memberCount': 'member/memberCount'
+    // })
   }
 }
 </script>
